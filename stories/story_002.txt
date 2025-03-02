@@ -1,1 +1,2 @@
-add a delete functionality for users
+add a delete functionality for users.
+Change the package of the source code from com.example.demo to com.vdzon.users

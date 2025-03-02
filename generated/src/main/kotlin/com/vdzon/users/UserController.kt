@@ -1,9 +1,9 @@
-package com.example.demo
+package com.vdzon.users
 
-import org.springframework.web.bind.annotation.*
+import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
-import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.web.bind.annotation.*
 
 @RestController
 class UserController {
@@ -13,7 +13,13 @@ class UserController {
     @PostMapping("/addUser")
     fun addUser(@RequestParam username: String): String {
         userService.addUsername(username)
-        return "User added"
+        return "User added."
+    }
+
+    @PostMapping("/removeUser")
+    fun removeUser(@RequestParam username: String): String {
+        userService.removeUsername(username)
+        return "User removed."
     }
 }
 

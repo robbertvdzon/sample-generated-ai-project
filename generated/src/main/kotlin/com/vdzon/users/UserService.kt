@@ -1,4 +1,4 @@
-package com.example.demo
+package com.vdzon.users
 
 import org.springframework.stereotype.Service
 
@@ -12,5 +12,9 @@ class UserService {
 
     fun getAllUsernames(): List<String> {
         return usernames
+    }
+
+    fun removeUsername(username: String) {
+        usernames.remove(username)
     }
 }

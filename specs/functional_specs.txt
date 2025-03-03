@@ -1,3 +1,5 @@
 - the main page shows a list of all the users in the system
 - the main page shows an input field to add a new user and a button to remove a user
-- the main page shows a header
+- the main page shows a header, without an image, but with a title in a nice font and color
+- When you add a user, you return to the main page and the user is added to the list
+- Each user on the list had a delete button next to it, and after deleting the user, you return to the main screen and see the new list

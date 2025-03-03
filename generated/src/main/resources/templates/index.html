@@ -5,29 +5,27 @@
     <style>
         body { font-family: Arial, sans-serif; }
         header { background-color: #4CAF50; color: white; text-align: center; padding: 1em; }
+        img { max-width: 100%; height: auto; }
         form { margin-top: 20px; }
-        button { margin-left: 10px; }
-        h1 { font-style: italic; font-size: 32px; }
     </style>
 </head>
 <body>
 <header>
     <h1>Usernames Management</h1>
+    <img src="/images/header.png" alt="Header Image">
 </header>
 <div>
     <form action="/addUser" method="post">
         Username: <input type="text" name="username" required>
         <button type="submit">Add User</button>
     </form>
+    <form action="/removeUser" method="post">
+        Username: <input type="text" name="username" required>
+        <button type="submit">Remove User</button>
+    </form>
     <h2>Stored Usernames:</h2>
     <ul>
-        <li th:each="username : ${usernames}">
-            <span th:text="${username}"></span>
-            <form th:action="@{/removeUser}" method="post" style="display:inline">
-                <input type="hidden" th:name="username" th:value="${username}" />
-                <button type="submit">Remove</button>
-            </form>
-        </li>
+        <li th:each="username : ${usernames}" th:text="${username}"></li>
     </ul>
 </div>
 </body>

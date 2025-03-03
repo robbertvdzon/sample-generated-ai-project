@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.web.bind.annotation.*
+import org.springframework.web.servlet.view.RedirectView
 
 @RestController
 class UserController {
@@ -11,15 +12,15 @@ class UserController {
     lateinit var userService: UserService
 
     @PostMapping("/addUser")
-    fun addUser(@RequestParam username: String): String {
+    fun addUser(@RequestParam username: String): RedirectView {
         userService.addUsername(username)
-        return "User added."
+        return RedirectView("/")
     }
 
     @PostMapping("/removeUser")
-    fun removeUser(@RequestParam username: String): String {
+    fun removeUser(@RequestParam username: String): RedirectView {
         userService.removeUsername(username)
-        return "User removed."
+        return RedirectView("/")
     }
 }
 
@@ -28,7 +29,7 @@ class WebController {
     @Autowired
     lateinit var userService: UserService
 
-    @GetMapping("")
+    @GetMapping("/")
     fun index(model: Model): String {
         model.addAttribute("usernames", userService.getAllUsernames())
         return "index"

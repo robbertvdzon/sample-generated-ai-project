@@ -1,8 +1,5 @@
 package com.example.demo
 
-import org.springframework.stereotype.Service
-
-@Service
 class UserService {
     private val usernames = mutableListOf<String>()
 
@@ -11,6 +8,6 @@ class UserService {
     }
 
     fun getAllUsernames(): List<String> {
-        return usernames
+        return usernames.toList()
     }
 }

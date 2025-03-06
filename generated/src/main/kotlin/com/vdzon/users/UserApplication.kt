@@ -1,5 +1,4 @@
 package com.vdzon.users
-
 import io.ktor.server.engine.embeddedServer
 import io.ktor.server.netty.Netty
 import io.ktor.application.*
@@ -9,7 +8,6 @@ import io.ktor.http.*
 import io.ktor.request.receiveParameters
 import io.ktor.routing.*
 import kotlinx.html.*
-
 fun main() {
     embeddedServer(Netty, port = 8080, host = "0.0.0.0") {
         install(CallLogging)
@@ -18,9 +16,7 @@ fun main() {
 }
 
 fun Application.module() {
-
     val userService = UserService()
-
     routing {
         get("/") {
             call.respondHtml(HttpStatusCode.OK) {
@@ -45,11 +41,11 @@ fun Application.module() {
                         h2 { +"Stored Usernames:" }
                         ul {
                             userService.getAllUsernames().forEach { username ->
-                                li { 
+                                li {
                                     +username
                                     form(action = "/deleteUser", method = FormMethod.post) {
-                                      hiddenInput(name="username") { value=username }
-                                      submitInput { value = "Delete" }
+                                        hiddenInput(name="username") { value=username }
+                                        submitInput { value = "Delete" }
                                     }
                                 }
                             }

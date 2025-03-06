@@ -1,5 +1,4 @@
 package com.vdzon.users
-
 class UserService {
     private val usernames = mutableListOf<String>()
 

@@ -6,9 +6,11 @@
 This application provides a web page for managing users
 
 ## listing users
-todo: add documentation on how to list 
+Go to the main page of the app to list all stored usernames.
 
 ## adding users
-todo: add documentation on how to add new users
+On the main page, fill the "Username" input field and click "Add User".
 
+## removing users
+On the main page, fill the "Username" input field and click "Remove User".
 

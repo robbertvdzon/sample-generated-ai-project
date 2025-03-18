@@ -8,6 +8,15 @@
         img { max-width: 100%; height: auto; }
         form { margin-top: 20px; }
     </style>
+    <script>
+        function deleteUser(username) {
+            fetch('/users/' + username, { method: 'DELETE' })
+                .then(response => response.text().then(alertMessage => {
+                    alert(alertMessage);
+                    window.location.reload();
+                }));
+        }
+    </script>
 </head>
 <body>
 <header>
@@ -15,13 +24,16 @@
     <img src="/images/header.png" alt="Header Image">
 </header>
 <div>
-    <form action="/addUser" method="post">
+    <form action="/users" method="post">
         Username: <input type="text" name="username" required>
         <button type="submit">Add User</button>
     </form>
     <h2>Stored Usernames:</h2>
     <ul>
-        <li th:each="username : ${usernames}" th:text="${username}"></li>
+        <li th:each="username : ${usernames}">
+            <span th:text="${username}"></span>
+            <button type="button" th:onclick="|deleteUser('${username}')|">Delete</button>
+        </li>
     </ul>
 </div>
 </body>

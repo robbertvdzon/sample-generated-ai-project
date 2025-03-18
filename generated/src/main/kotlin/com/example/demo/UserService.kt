@@ -10,7 +10,9 @@ class UserService {
         usernames.add(username)
     }
 
-    fun getAllUsernames(): List<String> {
-        return usernames
-    }
+    fun getAllUsernames(): List<String> = usernames
+
+    fun deleteUsername(username: String): Boolean = usernames.remove(username)
+
+    fun usernameExists(username: String): Boolean = usernames.contains(username)
 }

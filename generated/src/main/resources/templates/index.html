@@ -1,75 +1,16 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
-    <title>Usernames Management</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: auto;
-            padding: 20px;
-            border: 1px solid #ccc;
-            border-radius: 5px;
-            background-color: #f9f9f9;
-        }
-
-        h1, h2 {
-            color: #333;
-        }
-
-        form {
-            margin-bottom: 20px;
-        }
-
-        input[type="text"] {
-            width: calc(100% - 42px);
-            padding: 8px;
-            margin-right: 5px;
-        }
-
-        button {
-            padding: 8px 16px;
-            background-color: #337ab7;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        button:hover {
-            background-color: #2e6da4;
-        }
-
-        ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        li {
-            margin-bottom: 10px;
-        }
-
-        .footer {
-            margin-top: 20px;
-            text-align: center;
-            border-top: 1px solid #ccc;
-            padding-top: 10px;
-            color: #777;
-        }
-    </style>
+<meta charset="UTF-8">
+<title>User Management</title>
 </head>
 <body>
 <div class="container">
-    <h1>Usernames Management</h1>
+    <h1>User List</h1>
     <form id="addUserForm">
-        Username: <input type="text" name="username" required>
+        <input type="text" name="username" placeholder="Enter new username" required>
         <button type="submit">Add User</button>
     </form>
-    <h2>Stored Usernames:</h2>
     <ul id="userList">
         <li th:each="username : ${usernames}">
             <span th:text="${username}"></span>
@@ -77,32 +18,29 @@
         </li>
     </ul>
     <div class="footer">
-        Contact us: support@example.com
         <hr style="margin-top: 10px; margin-bottom: 5px;">
-        <p>© 2023 Example Inc. All rights reserved.</p>
-        <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a><br>
-        <p>Contact us: <strong>support@example.com</strong></p>
+        <p>Contact database</p>
     </div>
 </div>
 
 <script>
-    document.getElementById('addUserForm').addEventListener('submit', function(event) {
-        event.preventDefault();
-        const username = this.username.value;
-        if (username.trim() === '') return;
-        fetch('/addUser?username=' + encodeURIComponent(username), {method: 'POST'})
-            .then(response => response.ok ? location.reload() : alert('Error adding user'))
-            .catch(error => console.error('Error:', error));
-    });
+document.getElementById('addUserForm').addEventListener('submit', function(event) {
+    event.preventDefault();
+    const username = this.username.value;
+    if (username.trim() === '') return;
+    fetch('/addUser?username=' + encodeURIComponent(username), {method: 'POST'})
+        .then(response => response.ok ? location.reload() : alert('Error adding user'))
+        .catch(error => console.error('Error:', error));
+});
 
-    function deleteUser(event, button) {
-        event.preventDefault();
-        const username = button.getAttribute('data-username');
-        if (!confirm('Are you sure you want to delete ' + username + '?')) return;
-        fetch('/deleteUser/' + encodeURIComponent(username), {method: 'DELETE'})
-            .then(response => response.ok ? location.reload() : alert('Error deleting user'))
-            .catch(error => console.error('Error:', error));
-    }
+function deleteUser(event, button) {
+    event.preventDefault();
+    const username = button.getAttribute('data-username');
+    if (!confirm('Are you sure you want to delete ' + username + '?')) return;
+    fetch('/deleteUser/' + encodeURIComponent(username), {method: 'DELETE'})
+        .then(response => response.ok ? location.reload() : alert('Error deleting user'))
+        .catch(error => console.error('Error:', error));
+}
 </script>
 </body>
 </html>

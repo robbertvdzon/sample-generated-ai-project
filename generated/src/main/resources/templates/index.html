@@ -73,7 +73,7 @@
     <ul id="userList">
         <li th:each="username : ${usernames}">
             <span th:text="${username}"></span>
-            <button onclick="deleteUser(event, this)" th:data-username="'[[${username}]]'">Delete</button>
+            <button onclick="deleteUser(this)" th:data-username="'[[${username}]]'">Delete</button>
         </li>
     </ul>
     <div class="footer">
@@ -94,10 +94,8 @@
             .catch(error => console.error('Error:', error));
     });
 
-    function deleteUser(event, button) {
-        event.preventDefault();
+    function deleteUser(button) {
         const username = button.getAttribute('data-username');
-        if (!confirm('Are you sure you want to delete ' + username + '?')) return;
         fetch('/deleteUser/' + encodeURIComponent(username), {method: 'DELETE'})
             .then(response => response.ok ? location.reload() : alert('Error deleting user'))
             .catch(error => console.error('Error:', error));

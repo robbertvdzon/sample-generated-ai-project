@@ -12,7 +12,7 @@ class UserController {
     lateinit var userService: UserService
 
     @PostMapping("/addUser")
-    fun addUser(@RequestParam username: String, model: Model): ResponseEntity<String> {
+    fun addUser(@RequestParam username: String): ResponseEntity<String> {
         userService.addUsername(username)
         return ResponseEntity.ok().build()
     }

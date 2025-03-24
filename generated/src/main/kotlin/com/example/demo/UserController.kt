@@ -13,7 +13,7 @@ class UserController {
     @PostMapping("/addUser")
     fun addUser(@RequestParam username: String): String {
         userService.addUsername(username)
-        return "User added"
+        return "redirect:/"
     }
 }
 
@@ -26,5 +26,17 @@ class WebController {
     fun index(model: Model): String {
         model.addAttribute("usernames", userService.getAllUsernames())
         return "index"
+    }
+}
+
+@RestController
+class DeleteUserController {
+    @Autowired
+    lateinit var userService: UserService
+
+    @DeleteMapping("/deleteUser/{username}")
+    fun deleteUser(@PathVariable username: String): String {
+        userService.deleteUsername(username)
+        return "redirect:/"
     }
 }

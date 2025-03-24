@@ -4,6 +4,7 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.stereotype.Controller
 import org.springframework.ui.Model
 import org.springframework.beans.factory.annotation.Autowired
+import org.springframework.http.ResponseEntity
 
 @RestController
 class UserController {
@@ -11,9 +12,9 @@ class UserController {
     lateinit var userService: UserService
 
     @PostMapping("/addUser")
-    fun addUser(@RequestParam username: String, model: Model): String {
+    fun addUser(@RequestParam username: String, model: Model): ResponseEntity<String> {
         userService.addUsername(username)
-        return "redirect:/"
+        return ResponseEntity.ok().build()
     }
 }
 
@@ -35,8 +36,8 @@ class DeleteUserController {
     lateinit var userService: UserService
 
     @DeleteMapping("/deleteUser/{username}")
-    fun deleteUser(@PathVariable username: String, model: Model): String {
+    fun deleteUser(@PathVariable username: String): ResponseEntity<String> {
         userService.deleteUsername(username)
-        return "redirect:/"
+        return ResponseEntity.ok().build()
     }
 }

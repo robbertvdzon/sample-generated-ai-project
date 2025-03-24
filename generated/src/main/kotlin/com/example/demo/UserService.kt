@@ -14,7 +14,11 @@ class UserService {
         return usernames
     }
 
-    fun deleteUsername(username: String) {
-        usernames.remove(username)
+    fun deleteUsername(username: String): Boolean {
+        return if (usernames.remove(username)) {
+            true
+        } else {
+            false
+        }
     }
 }

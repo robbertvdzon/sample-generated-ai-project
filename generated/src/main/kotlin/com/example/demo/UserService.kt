@@ -13,4 +13,8 @@ class UserService {
     fun getAllUsernames(): List<String> {
         return usernames
     }
+
+    fun deleteUsername(username: String) {
+        usernames.remove(username)
+    }
 }

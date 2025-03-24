@@ -11,7 +11,7 @@ class UserController {
     lateinit var userService: UserService
 
     @PostMapping("/addUser")
-    fun addUser(@RequestParam username: String): String {
+    fun addUser(@RequestParam username: String, model: Model): String {
         userService.addUsername(username)
         return "redirect:/"
     }
@@ -35,7 +35,7 @@ class DeleteUserController {
     lateinit var userService: UserService
 
     @DeleteMapping("/deleteUser/{username}")
-    fun deleteUser(@PathVariable username: String): String {
+    fun deleteUser(@PathVariable username: String, model: Model): String {
         userService.deleteUsername(username)
         return "redirect:/"
     }

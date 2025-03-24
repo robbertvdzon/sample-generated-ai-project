@@ -73,12 +73,13 @@
     <ul id="userList">
         <li th:each="username : ${usernames}">
             <span th:text="${username}"></span>
-            <button onclick="deleteUser(event, this)" data-username="[[${username}]]">Delete</button>
+            <button onclick="deleteUser(event, this)" th:data-username="'[[${username}]]'">Delete</button>
         </li>
     </ul>
     <div class="footer">
         <hr style="margin-top: 10px; margin-bottom: 5px;">
         <p>© 2023 Example Inc. All rights reserved.</p>
+        <p>Contact database</p>
         <a href="#">Privacy Policy</a> | <a href="#">Terms of Service</a>
     </div>
 </div>

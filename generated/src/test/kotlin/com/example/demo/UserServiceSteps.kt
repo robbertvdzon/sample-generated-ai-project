@@ -3,11 +3,10 @@ package com.example.demo
 import io.cucumber.java.en.Given
 import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
+import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
-import org.springframework.beans.factory.annotation.Autowired
 
 class UserServiceSteps {
-    @Autowired
     lateinit var userService: UserService
 
     private val johnDoe = "John Doe"

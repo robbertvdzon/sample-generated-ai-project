@@ -21,10 +21,10 @@ class WebController {
 
     @GetMapping("/downloadContacts")
     fun downloadContacts(): ResponseEntity<String> {
-        val contacts = userService.getAllUsernames().joinToString(separator = "\n") { it }
+        val contacts = userService.getAllUsernames().joinToString(separator = ",\n") { it }
         val headers = HttpHeaders()
         headers.setContentType(MediaType.TEXT_PLAIN)
-        headers.setContentDispositionFormData("attachment", "contacts.csv")
+        headers.setContentDispositionFormData("attachment", "contactdatabase.csv")
         return ResponseEntity.ok()
             .headers(headers)
             .body(contacts)

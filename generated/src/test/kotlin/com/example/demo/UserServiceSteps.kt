@@ -5,12 +5,12 @@ import io.cucumber.java.en.Then
 import io.cucumber.java.en.When
 import org.junit.jupiter.api.Assertions
 import org.junit.jupiter.api.Assertions.assertEquals
+import org.springframework.web.server.ResponseStatusException
 
-class UserServiceSteps {
-    lateinit var userService: UserService
+class UserServiceSteps(
+    private val userService: UserService) {
 
     private val johnDoe = "John Doe"
-    private val janeDoe = "Jane Doe"
     private var errorMessage: String? = null
 
     @Given("the user {string} exists in the system")
@@ -39,14 +39,14 @@ class UserServiceSteps {
     fun `the administrator tries to delete user Jane Doe`(username: String) {
         try {
             userService.deleteUsername(username)
-        } catch (e: Exception) {
-            errorMessage = e.message
+        } catch (e: ResponseStatusException) {
+            errorMessage = e.reason
         }
     }
 
     @Then("the system displays an error message {string}")
     fun `the system displays an error message User not found`(errorMessageExpected: String) {
-        assertEquals(errorMessage, errorMessageExpected)
+        assertEquals(errorMessageExpected, errorMessage)
     }
 
     @Given("there are no users in the system")
@@ -58,13 +58,13 @@ class UserServiceSteps {
     fun `the administrator attempts to delete any user`() {
         try {
             userService.deleteUsername(johnDoe)
-        } catch (e: Exception) {
-            errorMessage = e.message
+        } catch (e: ResponseStatusException) {
+            errorMessage = e.reason
         }
     }
 
     @Then("the system informs that there are no users to delete")
     fun `the system informs that there are no users to delete`() {
-        assertEquals(errorMessage, "User not found")
+        assertEquals("User not found", errorMessage)
     }
 }

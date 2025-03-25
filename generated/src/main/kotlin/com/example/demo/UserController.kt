@@ -18,17 +18,17 @@ class UserController {
     }
 }
 
-@Controller
-class WebController {
-    @Autowired
-    lateinit var userService: UserService
-
-    @GetMapping("")
-    fun index(model: Model): String {
-        model.addAttribute("usernames", userService.getAllUsernames())
-        return "index"
-    }
-}
+//@Controller
+//class IndexController {
+//    @Autowired
+//    lateinit var userService: UserService
+//
+//    @GetMapping("")
+//    fun index(model: Model): String {
+//        model.addAttribute("usernames", userService.getAllUsernames())
+//        return "index"
+//    }
+//}
 
 @RestController
 class DeleteUserController {

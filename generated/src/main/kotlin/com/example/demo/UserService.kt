@@ -1,20 +1,23 @@
 package com.example.demo
 
 import org.springframework.stereotype.Service
+import org.springframework.web.server.ResponseStatusException
+import org.springframework.http.HttpStatus
 
 @Service
 class UserService {
-    private val usernames = mutableListOf<String>()
+    private val users = mutableSetOf<String>()
 
     fun addUsername(username: String) {
-        usernames.add(username)
+        users.add(username)
     }
 
-    fun getAllUsernames(): List<String> {
-        return usernames
+    fun deleteUsername(username: String): Boolean {
+        if (!users.remove(username)) {
+            throw ResponseStatusException(HttpStatus.NOT_FOUND, "User not found")
+        }
+        return true
     }
 
-    fun deleteUsername(username: String) {
-        usernames.remove(username)
-    }
+    fun getAllUsernames(): Set<String> = users.toSet()
 }

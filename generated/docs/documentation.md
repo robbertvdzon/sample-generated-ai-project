@@ -2,13 +2,14 @@
 
 
 
-## summary
-This application provides a web page for managing users
+## Summary
+This application provides a web page for managing users.
 
-## listing users
-todo: add documentation on how to list 
+## Listing Users
+To list all users, visit the main page where all stored usernames are displayed.
 
-## adding users
-todo: add documentation on how to add new users
+## Adding Users
+To add a new user, fill in the username in the input field on the main page and click 'Add User'.
 
-
+## Downloading Contacts
+To download the list of contacts as a CSV file, click the 'Download Contacts as CSV' button on the main page. The downloaded file will be named 'contactdatabase.csv'.

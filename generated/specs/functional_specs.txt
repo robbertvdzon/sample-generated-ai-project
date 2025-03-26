@@ -1,0 +1,4 @@
+- the main page shows a list of all the users in the system
+- the main page shows an input field to add a new user
+- the main page shows a header
+- users are persisted in a text file

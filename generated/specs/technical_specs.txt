@@ -1,0 +1,7 @@
+- the microservice is written in Kotlin
+- the microservice is a RESTful API
+- the microservice is a Spring Boot application
+- the microservice is a Maven project
+- the microservice stores the users in an in-memory list
+- the microservice uses thymeleaf for the front-end
+- the users are persisted in a text file, loaded on start and saved when modified.
